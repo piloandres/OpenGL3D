@@ -8,7 +8,7 @@
 GLsizei winWidth=900, winHeight=900;
 //GLsizei winWidth=640, winHeight=480;            //set initial display window size
 GLfloat	rtri = 180.0f;				// Angle For The Triangle ( NEW )
-GLfloat	rquad = 90.0f;			// Angle For The Quad ( NEW )
+GLfloat	rquad = 45.0f;			// Angle For The Quad ( NEW )
 
 void init(void) {
   glShadeModel(GL_SMOOTH);				// Enable Smooth Shading
@@ -21,8 +21,32 @@ void init(void) {
 
 void displayFcn(void){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
-	
-  glLoadIdentity();					// Reset The Current Modelview Matrix
+  glLoadIdentity();
+  glTranslatef(0.0f,0.0f,-700.0f);
+  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
+  gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
+  float l = 110.0f; // Longitud media de los lados del cuadrado
+  glBegin(GL_QUADS);
+    glColor3f(0.133f, 0.447f, 0.855f);  //Cambio de color azul
+    glVertex3f(l, l, 0.0f);  //Vertice arriba derecha
+    glVertex3f(-l, l, 0.0f); //Vertice arriba izquieda
+    glVertex3f(-l, -l, 0.0f); //Vertice abajo izquierda
+    glVertex3f(l, -l, 0.0f);  //Vertice abajo derecha
+  glEnd();
+  glLoadIdentity();
+  glTranslatef(0.0f,0.0f,-700.0f);
+  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
+  gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
+  float d = 400.0f; //Logitud de la profundidad en z del paralelogramo
+  glBegin(GL_QUADS);
+    glColor3f(0.216f, 0.467f, 0.482f);  //Cambio de color azul
+    glVertex3f(l, l, 0.0f);  //Vertice arriba derecha
+    glVertex3f(l, -l, 0.0f);  //Vertice abajo derecha
+    glVertex3f(l, -l, d); //Vertice abajo derecha Punto
+    glVertex3f(l, l, d); //Vertice abajo izquierda
+
+  glEnd();
+  /*glLoadIdentity();					// Reset The Current Modelview Matrix
   glTranslatef(-1.5f,0.0f,-10.0f);			// Move Left 1.5 Units And Into The Screen 6.0
   //glRotatef(rtri,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
   glRotatef(rtri,1.0f,0.0f,0.0f);
@@ -57,7 +81,7 @@ void displayFcn(void){
   glLoadIdentity();					// Reset The Current Modelview Matrix
   glTranslatef(1.5f,0.0f,-7.0f);			// Move Right 1.5 Units And Into The Screen 7.0
   //glRotatef(rquad,1.0f,1.0f,1.0f);			// Rotate The Quad On The X axis ( NEW )
-	glRotatef(rquad,0.0f,0.0f,0.0f);  
+	glRotatef(rquad,0.0f,0.0f,0.0f);
 	glBegin(GL_QUADS);					// Draw A Quad
     glColor3f(0.0f,1.0f,0.0f);				// Set The Color To Blue
     glVertex3f( 1.0f, 1.0f,-1.0f);			// Top Right Of The Quad (Top)
@@ -90,7 +114,7 @@ void displayFcn(void){
     glVertex3f( 1.0f,-1.0f, 1.0f);			// Bottom Left Of The Quad (Right)
     glVertex3f( 1.0f,-1.0f,-1.0f);			// Bottom Right Of The Quad (Right)
   glEnd();						// Done Drawing The Quad
-	
+
 	glLoadIdentity();					// Reset The Current Modelview Matrix
   glTranslatef(1.5f,1.5f,-20.0f);			// Move Left 1.5 Units And Into The Screen 6.0
   //glRotatef(rtri,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
@@ -120,7 +144,7 @@ void displayFcn(void){
     glVertex3f(-1.0f,-1.0f,-1.0f);			// Left Of Triangle (Left)
     glColor3f(0.0f,1.0f,0.0f);				// Green
     glVertex3f(-1.0f,-1.0f, 1.0f);			// Right Of Triangle (Left)
-  glEnd();						// Done Drawing The Pyramid
+  glEnd();						// Done Drawing The Pyramid*/
 
   glFlush();
 }
@@ -136,7 +160,7 @@ void winReshapeFcn(GLint newWidth, GLint newHeight){
   glLoadIdentity();					// Reset The Projection Matrix
 
   // Calculate The Aspect Ratio Of The Window
-  gluPerspective(45.0f,(GLfloat)newWidth/(GLfloat)newHeight,0.1f,100.0f);
+  gluPerspective(45.0f,(GLfloat)newWidth/(GLfloat)newHeight,0.1f,1000.0f);
 	//glOrtho (-5.0, 5.0, -5.0, 5.0, -30.0, 30.0);
 
   glMatrixMode(GL_MODELVIEW);				// Select The Modelview Matrix
@@ -145,7 +169,8 @@ void winReshapeFcn(GLint newWidth, GLint newHeight){
 
 int main(int argc, char ** argv){
   glutInit(&argc,argv);
-  glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+  glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB | GLUT_DEPTH);
+  //glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
   glutInitWindowPosition(50,50);
   glutInitWindowSize(winWidth,winHeight);
   glutCreateWindow("3d Shape");

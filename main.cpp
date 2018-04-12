@@ -96,10 +96,10 @@ void displayFcn(void){
     glVertex3f(l, -l, d); //Vertice abajo derecha punto
     glVertex3f(-l, -l, d); //Vertice abajo izquierda punto
   glEnd();
-  glLoadIdentity();
+  //glLoadIdentity();
   glTranslatef(0.0f,30.0f,-400.0f);
   glColor3f(0.0, 0.0f, 0.0f);
-  glutSolidSphere(30, 50, 50);	
+  glutSolidSphere(30, 50, 50);
 
   glFlush();
 }

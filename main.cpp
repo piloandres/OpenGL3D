@@ -25,9 +25,9 @@ void displayFcn(void){
   float l = 150.0f; // Longitud media de los lados del cuadrado
   float d = 450.0f; //Logitud de la profundidad en z del paralelogramo
   glLoadIdentity();
-  gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
+  //gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
   //gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-  //gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
+  gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
   glTranslatef(0.0f,0.0f,-500.0f);
   //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
   //Rampa
@@ -96,11 +96,6 @@ void displayFcn(void){
     glVertex3f(l, -l, d); //Vertice abajo derecha punto
     glVertex3f(-l, -l, d); //Vertice abajo izquierda punto
   glEnd();
-  //glLoadIdentity();
-  glTranslatef(0.0f,30.0f,-400.0f);
-  glColor3f(0.0, 0.0f, 0.0f);
-  glutSolidSphere(30, 50, 50);
-
   glFlush();
 }
 

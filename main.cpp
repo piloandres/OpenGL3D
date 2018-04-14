@@ -1,4 +1,3 @@
-
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 //#include <GL/glut.h>
@@ -26,8 +25,8 @@ void displayFcn(void){
   float d = 450.0f; //Logitud de la profundidad en z del paralelogramo
   glLoadIdentity();
   //gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
-  //gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-  gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
+  gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
+  //gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
   glTranslatef(0.0f,0.0f,-500.0f);
   //Rampa
   glBegin(GL_QUADS);
@@ -76,28 +75,44 @@ void displayFcn(void){
     glVertex3f(l, -l, d); //Vertice abajo derecha punto
     glVertex3f(-l, -l, d); //Vertice abajo izquierda punto
   glEnd();
-<<<<<<< HEAD
-=======
 
-  glLoadIdentity();
-  gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
-  //gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-  //gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
-  
-  glTranslatef(0.0f,30.0f,-300.0f);
+
+  glTranslatef(0.0f,80.0f,200.0f);
   glColor3f(1.0f,0.863f,0.8f);
   glutSolidSphere(30, 50, 50);
-  
+
   glTranslatef(0.0f,-20.0f,0.0f);
   glRotatef (90.0, 1.0f, 0.0f, 0.0f);
   glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind1 = gluNewQuadric();
   gluQuadricDrawStyle (cylind1, GLU_LINE);
-  gluCylinder (cylind1, 10, 10,100, 100, 100);
-	
->>>>>>> 0c44cffc2aa64aa3b692912f5b8c004abc275814
+  gluCylinder (cylind1, 10, 10,100, 500, 500);
+
+  glTranslatef(-10.0f,0.0f,10.0f); //XZY
+  glRotatef (-45.0, 0.0f, 1.0f, 0.0f);
+  glColor3f(1.0f,0.0f,0.0f);
+  GLUquadricObj *cylind2 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind2, GLU_LINE);
+  gluCylinder (cylind2, 5, 5,50, 100, 100);
+
+  glTranslatef(10.0f,0.0f,-15.0f); //XZY
+  glRotatef (90.0, 0.0f, 1.0f, 0.0f);
+  glColor3f(1.0f,1.0f,0.0f);
+  GLUquadricObj *cylind3 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind3, GLU_LINE);
+  gluCylinder (cylind3, 5, 5,50, 100, 100);
+
+  glTranslatef(-62.0f,0.0f,68.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
+  glTranslatef(-17.0f,0.0f,-17.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
   glFlush();
   gluDeleteQuadric (cylind1);
+  gluDeleteQuadric (cylind2);
 }
 
 void winReshapeFcn(GLint newWidth, GLint newHeight){

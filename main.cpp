@@ -243,9 +243,49 @@ void displayFcn(void){
   glutSolidSphere(3, 50, 50);
 	glTranslatef(0.0f,-29.0f,0.0f);
 	glTranslatef(7.0f,3.0f,-8.0f);
-  
- 
+//MANOS
+  //MANO 1
+  glTranslatef(25.0f,0.0f,-130.0f);
+  glColor3f(1.0f,0.863f,0.8f);
+  glutSolidSphere(4, 50, 50);
+  //MANO 2	
+	glTranslatef(-50.0f,0.0f,0.0f);
+  glColor3f(1.0f,0.863f,0.8f);
+  glutSolidSphere(4, 50, 50);
 
+	glTranslatef(50.0f,0.0f,0.0f);
+  glTranslatef(-25.0f,0.0f,0.0f);	
+//OJOS y GAFAS
+	glTranslatef(-7.0f,29.0f,-110.0f);
+	glScalef(1.0f,1.0f,2.0f);
+  glColor3f(1.0f,1.0f,1.0f);
+  glutSolidSphere(4, 50, 50);
+
+	glColor3f(0.0f,0.0f,0.0f);
+	glRotatef (90.0, 1.0f, 0.0f, 0.0f);
+	glutSolidTorus(1,4.5, 150, 100);
+	glRotatef (-90.0, 1.0f, 0.0f, 0.0f); 
+
+	glTranslatef(15.0f,0.0f,0.0f);
+	glColor3f(1.0f,1.0f,1.0f);
+	glutSolidSphere(4, 50, 50);
+
+	glColor3f(0.0f,0.0f,0.0f);
+	glRotatef (90.0, 1.0f, 0.0f, 0.0f);
+	glutSolidTorus(1,4.5, 150, 100);
+	glRotatef (-90.0, 1.0f, 0.0f, 0.0f); 
+  glScalef(1.0f,1.0f,0.5f);
+
+	glTranslatef(0.0f,5.0f,0.0f);
+	glColor3f(0.0f,0.0f,0.0f);
+	glutSolidSphere(1.5f, 50, 50);
+
+	glTranslatef(-15.0f,0.0f,0.0f);
+	glColor3f(0.0f,0.0f,0.0f);
+	glutSolidSphere(1.5f, 50, 50);
+		
+
+	
   glFlush();
   gluDeleteQuadric (cylind1);
   gluDeleteQuadric (cylind2);

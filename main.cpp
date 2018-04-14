@@ -1,4 +1,3 @@
-
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 //#include <GL/glut.h>
@@ -26,10 +25,9 @@ void displayFcn(void){
   float d = 450.0f; //Logitud de la profundidad en z del paralelogramo
   glLoadIdentity();
   //gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
-  //gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-  gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
+  gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
+  //gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
   glTranslatef(0.0f,0.0f,-500.0f);
-  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
   //Rampa
   glBegin(GL_QUADS);
     glColor3f(0.789f, 0.0, 0.831f); //color violeta
@@ -38,8 +36,6 @@ void displayFcn(void){
     glVertex3f(-l/2, -l, d); // Vertice abajo izquieda Punto
     glVertex3f(l/2, -l, d); //Vertice abajo derecha punto
   glEnd();
-
-
   glBegin(GL_QUADS);
     glColor3f(0.133f, 0.447f, 0.855f);  //Cambio de color azul
     glVertex3f(l, l, 0.0f);  //Vertice arriba derecha
@@ -48,11 +44,6 @@ void displayFcn(void){
     glVertex3f(l, -l, 0.0f);  //Vertice abajo derecha
   glEnd();
   //PARALELEPIPEDO LADO DERECHA
-  //glLoadIdentity();
-  //glTranslatef(0.0f,0.0f,-700.0f);
-  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
-  //gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-
   glBegin(GL_QUADS);
     glColor3f(0.216f, 0.467f, 0.482f);  //Cambio de color otro
     glVertex3f(l, l, 0.0f);  //Vertice arriba derecha
@@ -61,10 +52,6 @@ void displayFcn(void){
     glVertex3f(l, l, d); //Vertice abajo izquierda punto
   glEnd();
   //PARALELEPIPEDO LADO ARRIBA SIN RELLENO
-  //glLoadIdentity();
-  //glTranslatef(0.0f,0.0f,-700.0f);
-  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
-  //gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
   glBegin(GL_LINE_LOOP);
     glColor3f(0.0f,1.0f,0.0f); //Cambio de color verde
     glVertex3f(l, l, 0.0f);  //Vertice arriba derecha
@@ -73,10 +60,6 @@ void displayFcn(void){
     glVertex3f(l, l, d); //Vertice abajo derecha Punto
   glEnd();
   //PARALELEPIPEDO IZQUIEDA SIN RELLENO
-  //glLoadIdentity();
-  //glTranslatef(0.0f,0.0f,-700.0f);
-  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
-  //gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
   glBegin(GL_LINE_LOOP);
     glColor3f(0.0, 1.0f, 0.0f);  //Cambio de color verde
     glVertex3f(-l, l, 0.0f);  //Vertice arriba izquieda
@@ -85,10 +68,6 @@ void displayFcn(void){
     glVertex3f(-l, l, d); //Vertice arriba izquierda punto
   glEnd();
   //PARALELEPIPEDO ABAJO
-  //glLoadIdentity();
-  //glTranslatef(0.0f,0.0f,-700.0f);
-  //glRotatef(rquad,0.0f,1.0f,0.0f);			// Rotate The Triangle On The Y axis ( NEW )
-  //gluLookAt(0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
   glBegin(GL_LINE_LOOP);
     glColor3f(0.0, 1.0f, 0.0f);  //Cambio de color verde
     glVertex3f(-l, -l, 0.0f);  //Vertice abajo izquierda
@@ -96,7 +75,44 @@ void displayFcn(void){
     glVertex3f(l, -l, d); //Vertice abajo derecha punto
     glVertex3f(-l, -l, d); //Vertice abajo izquierda punto
   glEnd();
+
+
+  glTranslatef(0.0f,80.0f,200.0f);
+  glColor3f(1.0f,0.863f,0.8f);
+  glutSolidSphere(30, 50, 50);
+
+  glTranslatef(0.0f,-20.0f,0.0f);
+  glRotatef (90.0, 1.0f, 0.0f, 0.0f);
+  glColor3f(0.0f,1.0f,0.0f);
+  GLUquadricObj *cylind1 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind1, GLU_LINE);
+  gluCylinder (cylind1, 10, 10,100, 500, 500);
+
+  glTranslatef(-10.0f,0.0f,10.0f); //XZY
+  glRotatef (-45.0, 0.0f, 1.0f, 0.0f);
+  glColor3f(1.0f,0.0f,0.0f);
+  GLUquadricObj *cylind2 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind2, GLU_LINE);
+  gluCylinder (cylind2, 5, 5,50, 100, 100);
+
+  glTranslatef(10.0f,0.0f,-15.0f); //XZY
+  glRotatef (90.0, 0.0f, 1.0f, 0.0f);
+  glColor3f(1.0f,1.0f,0.0f);
+  GLUquadricObj *cylind3 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind3, GLU_LINE);
+  gluCylinder (cylind3, 5, 5,50, 100, 100);
+
+  glTranslatef(-62.0f,0.0f,68.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
+  glTranslatef(-17.0f,0.0f,-17.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
   glFlush();
+  gluDeleteQuadric (cylind1);
+  gluDeleteQuadric (cylind2);
 }
 
 void winReshapeFcn(GLint newWidth, GLint newHeight){

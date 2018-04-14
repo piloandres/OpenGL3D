@@ -77,7 +77,7 @@ void displayFcn(void){
   glEnd();
 
  //PINTA CABEZA
-  glTranslatef(0.0f,80.0f,200.0f);
+  glTranslatef(0.0f,120.0f,200.0f); ///////////////////////////////////////////////////////////ACA
   glColor3f(1.0f,0.863f,0.8f);
   glutSolidSphere(30, 50, 50);
  //PINTA TORSO
@@ -166,11 +166,86 @@ void displayFcn(void){
 
   glRotatef (-2.0, 0.0f, 1.0f, 0.0f);
   glTranslatef(-5.0f,0.0f,1.0f);
-
+//CINTURON
 	glTranslatef(0.0f,0.0f,-2.0f);
   glColor3f(0.4f,0.2f,0.0f);
 	glutSolidTorus(2,10, 150, 100); 
+	glTranslatef(0.0f,0.0f,2.0f);	
+//PINTA BOLAS RODILLAS
+  //BOLA 1
+  glTranslatef(7.0f,0.0f,60.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+  //BOLA 2	
+  glTranslatef(-14.0f,0.0f,0.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
+  glTranslatef(14.0f,0.0f,0.0f);
+  glTranslatef(-7.0f,0.0f,-60.0f);	
+//RESTO DE LAS PIERNAS
+	glTranslatef(-7.0f,0.0f,63.0f); //XZY
+  glColor3f(0.0f,0.0f,1.0f);
+  GLUquadricObj *cylind8 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind8, GLU_LINE);
+  gluCylinder (cylind8, 5, 3,55, 100, 100);
+
+	glTranslatef(7.0f,0.0f,0.0f);
+  
+  glTranslatef(7.0f,0.0f,0.0f); //XZY
+  glColor3f(0.0f,0.0f,1.0f);
+  GLUquadricObj *cylind9 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind9, GLU_LINE);
+  gluCylinder (cylind9, 5, 3,55, 100, 100);
 	
+  glTranslatef(-7.0f,0.0f,0.0f);
+//PINTA BOLAS TOBILLOS
+  //BOLA 1
+  glTranslatef(7.0f,0.0f,56.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+  //BOLA 2	
+  glTranslatef(-14.0f,0.0f,0.0f);
+  glColor3f(0.0f,0.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+
+  glTranslatef(14.0f,0.0f,0.0f);
+  glTranslatef(-7.0f,0.0f,0.0f);
+//ZAPATOS
+	glTranslatef(7.0f,-3.0f,8.0f); //XZY
+  glRotatef (90.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-5.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-90.0, 1.0f, 0.0f, 0.0f);
+  glColor3f(0.0f,0.0f,1.0f);
+  GLUquadricObj *cylind10 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind10, GLU_LINE);
+  gluCylinder (cylind10, 7, 3,30, 100, 100);
+	glRotatef (90.0, 1.0f, 0.0f, 0.0f);	
+	glRotatef (5.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-90.0, 0.0f, 1.0f, 0.0f);
+	glTranslatef(0.0f,29.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+	glTranslatef(0.0f,-29.0f,0.0f);
+	glTranslatef(-7.0f,3.0f,-8.0f);
+//2
+	glTranslatef(-7.0f,-3.0f,8.0f); //XZY
+  glRotatef (90.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-5.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-90.0, 1.0f, 0.0f, 0.0f);
+  glColor3f(0.0f,0.0f,1.0f);
+  GLUquadricObj *cylind11 = gluNewQuadric();
+  gluQuadricDrawStyle (cylind11, GLU_LINE);
+  gluCylinder (cylind11, 7, 3,30, 100, 100);
+	glRotatef (90.0, 1.0f, 0.0f, 0.0f);	
+	glRotatef (5.0, 0.0f, 1.0f, 0.0f);
+	glRotatef (-90.0, 0.0f, 1.0f, 0.0f);
+	glTranslatef(0.0f,29.0f,0.0f);
+  glutSolidSphere(3, 50, 50);
+	glTranslatef(0.0f,-29.0f,0.0f);
+	glTranslatef(7.0f,3.0f,-8.0f);
+  
+ 
+
   glFlush();
   gluDeleteQuadric (cylind1);
   gluDeleteQuadric (cylind2);
@@ -179,6 +254,10 @@ void displayFcn(void){
   gluDeleteQuadric (cylind5);
   gluDeleteQuadric (cylind6);
   gluDeleteQuadric (cylind7);
+  gluDeleteQuadric (cylind8);
+  gluDeleteQuadric (cylind9);
+  gluDeleteQuadric (cylind10);
+  gluDeleteQuadric (cylind11);
 }
 
 void winReshapeFcn(GLint newWidth, GLint newHeight){

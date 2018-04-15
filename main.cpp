@@ -256,8 +256,9 @@ void displayFcn(void){
 	glTranslatef(50.0f,0.0f,0.0f);
   glTranslatef(-25.0f,0.0f,0.0f);
 //OJOS y GAFAS
-	glTranslatef(-7.0f,29.0f,-110.0f);
-	glScalef(1.0f,1.0f,2.0f);
+	glTranslatef(-9.0f,30.0f,-110.0f);
+	glRotatef (-30.0, 0.0f, 1.0f, 0.0f);
+	glScalef(1.0f,0.25f,2.0f);
   glColor3f(1.0f,1.0f,1.0f);
   glutSolidSphere(4, 50, 50);
 
@@ -265,8 +266,13 @@ void displayFcn(void){
 	glRotatef (90.0, 1.0f, 0.0f, 0.0f);
 	glutSolidTorus(1,4.5, 150, 100);
 	glRotatef (-90.0, 1.0f, 0.0f, 0.0f);
+	glScalef(1.0f,4.0f,0.5f);
+	glRotatef (30.0, 0.0f, 1.0f, 0.0f);
+//
 
-	glTranslatef(15.0f,0.0f,0.0f);
+	glTranslatef(17.0f,0.0f,0.0f);
+	glRotatef (30.0, 0.0f, 1.0f, 0.0f);
+	glScalef(1.0f,0.25f,2.0f);
 	glColor3f(1.0f,1.0f,1.0f);
 	glutSolidSphere(4, 50, 50);
 
@@ -274,9 +280,9 @@ void displayFcn(void){
 	glRotatef (90.0, 1.0f, 0.0f, 0.0f);
 	glutSolidTorus(1,4.5, 150, 100);
 	glRotatef (-90.0, 1.0f, 0.0f, 0.0f);
-  glScalef(1.0f,1.0f,0.5f);
-
-	glTranslatef(0.0f,5.0f,0.0f);
+  glScalef(1.0f,4.0f,0.5f);
+	glRotatef (-30.0, 0.0f, 1.0f, 0.0f);
+//
 	glColor3f(0.0f,0.0f,0.0f);
 	glutSolidSphere(1.5f, 50, 50);
 

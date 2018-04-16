@@ -23,10 +23,18 @@ void displayFcn(void){
   //PARALELEPIPEDO FONDO
   float l = 150.0f; // Longitud media de los lados del cuadrado
   float d = 450.0f; //Logitud de la profundidad en z del paralelogramo
+  //////////////////////////////////
+  // Camara mirando de lado
+  //float camaraX = -600.0, camaraY = 0.0, camaraZ = -270.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = -270.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
+  // Camara mirando de frente
+  //float camaraX = 0.0, camaraY = 0.0, camaraZ = 350.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = 0.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
+  // Camara mirando de arriba
+  //float camaraX = 0.0, camaraY = 600.0, camaraZ = -270.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = -270.0, camaraEjex = 0.0, camaraEjey = 0.0, camaraEjez = -1.0;
+  //Camata mirando de lado rotada
+  float camaraX = -300.0, camaraY = 0.0, camaraZ = 350.0, camaraMX = 150.0, camaraMY = 0.0, camaraMZ = -450.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
+  //////////////////////////////////
   glLoadIdentity();
-  //gluLookAt(-600.0, 0.0, -270.0f, 0.0f, 0.0, -270.0f, 0.0, 1.0f, 0.0); // Camara mirando del lado izquiedo
-  gluLookAt(0.0, 0.0, 350.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Camara mirando hacie eje -z
-  //gluLookAt(0.0, 600.0, -270.0, 0.0, 0.0, -270.0, 0.0, 0.0,-1.0); // Camara mirando de arriba hacia abajo
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
   glTranslatef(0.0f,0.0f,-500.0f);
   //Rampa
   glBegin(GL_QUADS);
@@ -77,36 +85,39 @@ void displayFcn(void){
   glEnd();
 
  //PINTA CABEZA
-  glTranslatef(0.0f,120.0f,200.0f); ///////////////////////////////////////////////////////////ACA
+  glTranslatef(0.0f,105.0f,200.0f); ///////////////////////////////////////////////////////////ACA
   glColor3f(1.0f,0.863f,0.8f);
   glutSolidSphere(30, 50, 50);
  //PINTA TORSO
-  glTranslatef(0.0f,-20.0f,0.0f);
+  glTranslatef(0.0f,-40.0f,0.0f);
   glRotatef (90.0, 1.0f, 0.0f, 0.0f);
   glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind1 = gluNewQuadric();
   gluQuadricDrawStyle (cylind1, GLU_LINE);
-  gluCylinder (cylind1, 10, 10,100, 500, 500);
+  gluCylinder (cylind1, 10, 10,80, 500, 500);
+  glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+  glTranslatef(0.0f,20.0f,0.0f);
+  glRotatef (90.0, 1.0f, 0.0f, 0.0f);
  //PINTA BRAZOS
-  glTranslatef(-10.0f,0.0f,10.0f); //XZY
+  glTranslatef(-10.0f,0.0f,20.0f); //XZY
   glRotatef (-20.0, 0.0f, 1.0f, 0.0f);
-  glColor3f(1.0f,0.0f,0.0f);
+  glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind2 = gluNewQuadric();
   gluQuadricDrawStyle (cylind2, GLU_LINE);
   gluCylinder (cylind2, 3, 3,40, 100, 100);
 
   glRotatef (20.0, 0.0f, 1.0f, 0.0f);
-  glTranslatef(10.0f,0.0f,-10.0f);
+  glTranslatef(10.0f,0.0f,-20.0f);
 
-  glTranslatef(10.0f,0.0f,10.0f); //XZY
+  glTranslatef(10.0f,0.0f,20.0f); //XZY
   glRotatef (20.0, 0.0f, 1.0f, 0.0f);
-  glColor3f(1.0f,1.0f,0.0f);
+  glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind3 = gluNewQuadric();
   gluQuadricDrawStyle (cylind3, GLU_LINE);
   gluCylinder (cylind3, 3, 3,40, 100, 100);
 
   glRotatef (-20.0, 0.0f, 1.0f, 0.0f);
-  glTranslatef(-10.0f,0.0f,-10.0f);
+  glTranslatef(-10.0f,0.0f,-20.0f);
 //PINTA BOLAS CADERA
   //BOLA 1
   glTranslatef(5.0f,0.0f,102.0f);
@@ -121,7 +132,7 @@ void displayFcn(void){
   glTranslatef(-5.0f,0.0f,-102.0f);
 //BOLAS BRAZOS
   //BOLA 1
-  glTranslatef(24.8f,0.0f,49.2f);
+  glTranslatef(24.8f,0.0f,59.2f);
   glColor3f(0.0f,0.0f,0.0f);
   glutSolidSphere(3, 50, 50);
   //BOLA 2
@@ -129,23 +140,23 @@ void displayFcn(void){
   glColor3f(0.0f,0.0f,0.0f);
   glutSolidSphere(3, 50, 50);
   glTranslatef(49.6f,0.0f,0.0f);
-  glTranslatef(-24.8f,0.0f,-49.2f);
+  glTranslatef(-24.8f,0.0f,-59.2f);
 //RESTO DE LOS BRAZOS
-	glTranslatef(-25.0f,0.0f,52.0f); //XZY
-  glColor3f(1.0f,0.0f,0.0f);
+	glTranslatef(-25.0f,0.0f,62.0f); //XZY
+  glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind4 = gluNewQuadric();
   gluQuadricDrawStyle (cylind4, GLU_LINE);
   gluCylinder (cylind4, 3, 3,40, 100, 100);
 
-	glTranslatef(25.0f,0.0f,-52.0f);
+	glTranslatef(25.0f,0.0f,-62.0f);
 
-  glTranslatef(25.0f,0.0f,52.0f); //XZY
-  glColor3f(1.0f,1.0f,0.0f);
+  glTranslatef(25.0f,0.0f,62.0f); //XZY
+  glColor3f(0.0f,1.0f,0.0f);
   GLUquadricObj *cylind5 = gluNewQuadric();
   gluQuadricDrawStyle (cylind5, GLU_LINE);
   gluCylinder (cylind5, 3, 3,40, 100, 100);
 
-  glTranslatef(-25.0f,0.0f,52.0f);
+  glTranslatef(-25.0f,0.0f,42.0f);
 //MUSLOS
 	glTranslatef(-5.0f,0.0f,-1.0f); //XZY
   glRotatef (-2.0, 0.0f, 1.0f, 0.0f);
@@ -245,7 +256,7 @@ void displayFcn(void){
 	glTranslatef(7.0f,3.0f,-8.0f);
 //MANOS
   //MANO 1
-  glTranslatef(25.0f,0.0f,-130.0f);
+  glTranslatef(25.0f,0.0f,-120.0f);
   glColor3f(1.0f,0.863f,0.8f);
   glutSolidSphere(4, 50, 50);
   //MANO 2
@@ -254,7 +265,7 @@ void displayFcn(void){
   glutSolidSphere(4, 50, 50);
 
 	glTranslatef(50.0f,0.0f,0.0f);
-  glTranslatef(-25.0f,0.0f,0.0f);
+  glTranslatef(-25.0f,0.0f,-10.0f);
 //OJOS y GAFAS
 	glTranslatef(-9.0f,30.0f,-110.0f);
 	glRotatef (-30.0, 0.0f, 1.0f, 0.0f);
@@ -290,6 +301,101 @@ void displayFcn(void){
 	glColor3f(0.0f,0.0f,0.0f);
 	glutSolidSphere(1.5f, 50, 50);
 
+// Cuello
+  glLoadIdentity();
+  glColor3f(1.0f,0.863f,0.8f);
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0, 83.0, -300.0);
+  glRotatef(90.0,1.0,0.0,0.0);
+  glutSolidCone(20, 25, 50, 50);
+
+//Corbata
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0f, 64.0f,-289.0f);
+  glBegin(GL_POLYGON);
+    glColor3f(0.0f,0.0f,1.0f); //color azul
+    glVertex3f(-1.0f,0.0f, 0.0f);
+    glVertex3f(-5.0f,-60.0f, 0.0f);
+    glVertex3f(0.0f, -65.0f, 0.0f);
+    glVertex3f(5.0f, -60.0f, 0.0f);
+    glVertex3f(1.0f, 0.0f, 0.0f);
+  glEnd();
+
+  //Cejas
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(-2.0f, 114.0f,-269.0f);
+  glBegin(GL_POLYGON);
+    glColor3f(0.0f,0.0f,0.0f); //color azul
+    glVertex3f(3.0f,0.0f, 0.0f);
+    glVertex3f(15.0f,2.0f, 0.0f);
+    glVertex3f(17.0f, 0.0f, 0.0f);
+  glEnd();
+
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0f, 115.0f,-269.0f);
+  glRotatef(-180, 0.0, 0.0,1.0);
+  glBegin(GL_POLYGON);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(3.0f,0.0f, 0.0f);
+    glVertex3f(15.0f,2.0f, 0.0f);
+    glVertex3f(17.0f, 0.0f, 0.0f);
+  glEnd();
+
+  // Nariz y boca
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0f, 95.0f,-269.0f);
+  glLineWidth(2.5);
+  glBegin(GL_LINES);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(-3.0f,0.0f, 0.0f);
+    glVertex3f(0.0f,-5.0f, 0.0f);
+  glEnd();
+
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0f, 95.0f,-269.0f);
+  glLineWidth(2.5);
+  glBegin(GL_LINES);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(3.0f,0.0f, 0.0f);
+    glVertex3f(0.0f,-5.0f, 0.0f);
+  glEnd();
+
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(0.0f, 84.0f,-269.0f);
+  glLineWidth(2.5);
+  glBegin(GL_LINES);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(-5.0f,0.0f, 0.0f);
+    glVertex3f(6.0f,-1.0f, 0.0f);
+  glEnd();
+
+  //Palitos de las GAFAS
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(13.0f, 104.0f,-269.0f);
+  glLineWidth(4.0);
+  glBegin(GL_LINES);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(0.0f,0.0f, 0.0f);
+    glVertex3f(15.0f,3.0f, -3.0f);
+  glEnd();
+
+  glLoadIdentity();
+  gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
+  glTranslatef(-13.0f, 104.0f,-269.0f);
+  glLineWidth(4.0);
+  glBegin(GL_LINES);
+    glColor3f(0.0f,0.0f,0.0f); //color negro
+    glVertex3f(0.0f,0.0f, 0.0f);
+    glVertex3f(-15.0f,3.0f, -3.0f);
+  glEnd();
+  glLineWidth(1.0);
 
 
   glFlush();

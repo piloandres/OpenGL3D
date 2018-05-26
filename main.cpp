@@ -4,6 +4,15 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include <fstream>
+#include <iostream>
+#include <string.h>
+
+#include <map>
+#include <vector>
+
+std::map< std::string, std::vector<GLfloat> > puntos;
+
 GLsizei winWidth=1200, winHeight=900;
 //GLsizei winWidth=640, winHeight=480;            //set initial display window size
 GLfloat	rtri = 180.0f;				// Angle For The Triangle ( NEW )
@@ -18,6 +27,67 @@ void init(void) {
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 }
 
+class Punto {
+  public:
+    GLfloat x,y,z;
+};
+
+bool esLetra(char linea[]) {
+  if ((linea[0] > 'A' && linea[0] < 'Z') || (linea[0]> 'a' && linea[0] < 'z')) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+void leerArchivo() {
+  std::ifstream archivo("entrada.in");
+  char linea[128];
+  int i,j;
+  j=0;
+  if(archivo.fail())
+    std::cerr << "Error al abrir el archivo" << std::endl;
+  else{
+    bool sigue = true;
+    while(!archivo.eof()) {
+      char * pch;
+      std::vector<Punto> v;
+      if (j == 0) {
+        archivo.getline(linea, sizeof(linea));
+        ++j;
+      }
+      std::string llave(linea);
+      sigue = true;
+      archivo.getline(linea, sizeof(linea));
+      while (!archivo.eof() && sigue) {
+        Punto punto;
+        i = 0;
+        pch = strtok (linea," ");
+        while (pch != NULL)
+        {
+          if(i == 0){
+            punto.x = atof(pch);
+          }else if(i == 1){
+            punto.y = atof(pch);
+          }else if(i == 2) {
+            punto.z = atof(pch);
+          }
+          pch = strtok (NULL, " ");
+          ++i;
+        }
+        v.push_back(punto);
+        archivo.getline(linea, sizeof(linea));
+        if (esLetra(linea)) {
+          sigue = false;
+          puntos.insert(std::pair< std::string, std::vector<float> >(llave, v) );
+        }else{
+          sigue = true;
+        }
+      }
+    }
+    archivo.close();
+}
+
 void displayFcn(void){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
   //PARALELEPIPEDO FONDO
@@ -25,13 +95,13 @@ void displayFcn(void){
   float d = 450.0f; //Logitud de la profundidad en z del paralelogramo
   //////////////////////////////////
   // Camara mirando de lado
-  //float camaraX = -600.0, camaraY = 0.0, camaraZ = -270.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = -270.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
+  float camaraX = -600.0, camaraY = 0.0, camaraZ = -270.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = -270.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
   // Camara mirando de frente
   //float camaraX = 0.0, camaraY = 0.0, camaraZ = 350.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = 0.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
   // Camara mirando de arriba
   //float camaraX = 0.0, camaraY = 600.0, camaraZ = -270.0, camaraMX = 0.0, camaraMY = 0.0, camaraMZ = -270.0, camaraEjex = 0.0, camaraEjey = 0.0, camaraEjez = -1.0;
   //Camata mirando de lado rotada
-  float camaraX = -300.0, camaraY = 0.0, camaraZ = 350.0, camaraMX = 150.0, camaraMY = 0.0, camaraMZ = -450.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
+  //float camaraX = -300.0, camaraY = 0.0, camaraZ = 350.0, camaraMX = 150.0, camaraMY = 0.0, camaraMZ = -450.0, camaraEjex = 0.0, camaraEjey = 1.0, camaraEjez = 0.0;
   //////////////////////////////////
   glLoadIdentity();
   gluLookAt(camaraX, camaraY, camaraZ, camaraMX, camaraMY, camaraMZ, camaraEjex, camaraEjey, camaraEjez);
@@ -432,6 +502,7 @@ void winReshapeFcn(GLint newWidth, GLint newHeight){
 
 int main(int argc, char ** argv){
   glutInit(&argc,argv);
+  leerArchivo();
   glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB | GLUT_DEPTH);
   //glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
   glutInitWindowPosition(50,50);
